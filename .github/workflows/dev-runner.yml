@@ -1,0 +1,26 @@
+name: 'Dev Runner'
+
+on:
+  push:
+
+jobs:
+  avd-dev-deployment:
+    runs-on: [self-hosted, dev]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Deploy Configuration to CVP
+        run: ansible-playbook -i single-dc-l3ls/inventory.yml single-dc-l3ls/deploy-cvp.yml
+
+      - run: sleep 10
+
+      - name: Validate connectivity
+        run: ansible-playbook -i single-dc-l3ls/inventory.yml single-dc-l3ls/fabric-validation.yml
+
+      - name: Upload verification reports to github
+        uses: actions/upload-artifact@master
+        with:
+          name: ValidationReport
+          path: single-dc-l3ls/reports/
+

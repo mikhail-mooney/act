@@ -12,6 +12,3 @@
         name: arista.avd.eos_validate_state
       vars:
         fabric_name: "FABRIC"
-#        root_dir: '../DC-information'
-#        root_dir: 'DC-information'
-#        structured_dir: '../intended/structured_configs'
