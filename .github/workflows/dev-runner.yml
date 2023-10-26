@@ -16,7 +16,7 @@ jobs:
       - run: sleep 10
 
       - name: Validate connectivity
-        run: ansible-playbook -i inventory.yml fabric-validation.yml
+        run: ansible-playbook -i inventory.yml fabric_validation.yml
 
       - name: Upload verification reports to github
         uses: actions/upload-artifact@master
